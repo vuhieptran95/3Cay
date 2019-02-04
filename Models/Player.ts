@@ -11,6 +11,7 @@ export class Player {
     isMain: boolean = false;
     isMyPlayer: boolean = false;
     timeAsMain: number = 0;
+    lastGamePoint: number = 0;
     /**
      *
      */

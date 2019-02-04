@@ -17,8 +17,11 @@ export class Game {
             let k = i + 2;
             player.cards = [this.myCards[i], this.myCards[j],this.myCards[k]];
             i = k + 1;
-            if(player.isMain) player.bet = player.bet;
-            else if(player.isMyPlayer) player.bet=10;
+            if(player.isMain) player.bet = 0;
+            else if(player.isMyPlayer) {
+                if(player.lastGamePoint < 5) player.bet=10;
+                else player.bet = shuffle([20,30,40])[0];
+            }
             else player.bet = shuffle(bet)[0];
             console.log(player.cards);
             console.log(player.bet);
@@ -30,6 +33,10 @@ export class Game {
         player.isMain = true;
         player.timeAsMain = player.timeAsMain + 1;
         this.mainPlayer = player;
+    }
+
+    assignLastGamePoint(){
+        this.players.forEach(p => p.lastGamePoint = p.totalPoint().totalPoint)
     }
 
     chooseNewMain(){
@@ -117,6 +124,7 @@ export class Game {
             this.bootstrap();
             this.calculateWinningMoney();
             this.printResult();
+            this.assignLastGamePoint();
             this.chooseNewMain();
             
         }

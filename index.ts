@@ -11,7 +11,6 @@ import { DB } from "./config/FirebaseConfig";
 // for (let i = 1; i < 101; i++) {
 //     let myPlayer = new Player(10);
 //     myPlayer.isMyPlayer = true;
-//     myPlayer.bet = 10;
 //     let game = new Game();
 //     game.players = [new Player(1),new Player(2),new Player(3),new Player(4), myPlayer, new Player(5)]
 //     game.play(50);
@@ -29,10 +28,10 @@ let app = express()
 app.get('/', async function (req, res) {
     let sum = 0
     for (let i = 1; i < 101; i++) {
-        let result = await DB.collection("3Cay lan "+(i)).doc("Lan choi "+i+ ": Nguoi choi "+1).get();
+        let result = await DB.collection("3Cay lan "+(i)).doc("Lan choi "+i+ ": Nguoi choi "+10).get();
         sum = sum + result.data().win;
     }
-    DB.collection("Result").doc("Tong tien 1").set({Sum: sum});
+    DB.collection("Result_2").doc("Tong tien 2_10").set({Sum: sum});
   res.send('Hello World')
 })
 
